@@ -1,6 +1,6 @@
-# reminder
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/e6eb25534d2c404f8ce31ca3b4dbfa63)](https://www.codacy.com/gh/KrishanBhalla/reminder/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=KrishanBhalla/reminder&amp;utm_campaign=Badge_Grade)
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/7ef8e44b3703426f91ed15f514937cb8)](https://app.codacy.com/gh/KrishanBhalla/reminder?utm_source=github.com&utm_medium=referral&utm_content=KrishanBhalla/reminder&utm_campaign=Badge_Grade)
+# reminder
 
 Reminder is a Golang package to allow users to schedule alerts.
 It has 4 parts:
