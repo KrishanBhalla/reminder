@@ -77,7 +77,7 @@ func main() {
 	}
 	r.Repeat(s)
 
-    wdayRem := schedule.DayOfWeekRepeater{
+        wdayRem := schedule.DayOfWeekRepeater{
 		Interval: time.Hour,
 		NumTimes: 5,
 	}
