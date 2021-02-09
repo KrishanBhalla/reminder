@@ -69,19 +69,23 @@ import (
 
 func main() {
 
+	// Schedule a reminder for right now
 	format := time.RFC1123Z
-	s, _ := schedule.NewSchedule(format, time.Now().Format(format), "GMT")
+	s, _ := schedule.NewSchedule(format, time.Now().Format(format), "Local")
 
+	// Repeat it every hour for the next 8 hours
 	r := schedule.IntervalRepeater{
 		Interval: time.Hour,
-		NumTimes: 3,
+		NumTimes: 8,
 	}
 	r.Repeat(s)
 
-        wdayRem := schedule.DayOfWeekRepeater{
-		Interval: time.Hour,
+	// Repeat the reminder every day of the week
+	wdayRem := schedule.DayOfWeekRepeater{
+		Days:     []time.Weekday{time.Monday, time.Tuesday, time.Wednesday, time.Thursday, time.Friday},
 		NumTimes: 5,
 	}
+	wdayRem.Repeat(s)
 
 	rem := reminder.Reminder{
 		Schedule: s,
@@ -92,5 +96,6 @@ func main() {
 	fmt.Println(err)
 
 }
+
 
 ```
