@@ -1,4 +1,5 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/e6eb25534d2c404f8ce31ca3b4dbfa63)](https://www.codacy.com/gh/KrishanBhalla/reminder/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=KrishanBhalla/reminder&amp;utm_campaign=Badge_Grade)
+[![Go Report Card](https://goreportcard.com/badge/github.com//KrishanBhalla/reminder)](https://goreportcard.com/report/github.com/KrishanBhalla/reminder)
 
 # reminder
 
