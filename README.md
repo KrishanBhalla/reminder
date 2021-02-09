@@ -6,8 +6,7 @@ It has 4 parts:
  2) Repeater
  3) Notifier
  4) Reminder
-## Scheduler
-
+ 
 A scheduler takes in a `time.Time` for the first reminder to be sent.
 A repeater applies rules to repeating a scheduled event - say at fixed intervals or on certain days
 Repeaters can be combined (see examples)
