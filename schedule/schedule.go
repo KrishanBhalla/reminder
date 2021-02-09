@@ -33,9 +33,7 @@ func (s *Schedule) Pop() interface{} {
 // It will error if the required fields are improperly filled in.
 func NewSchedule(layout, value, location string) (*Schedule, error) {
 	s := &Schedule{}
-	var err error
-
-	err = s.SetTime(layout, value, location)
+	err := s.SetTime(layout, value, location)
 
 	if err != nil {
 		return nil, err
