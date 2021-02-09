@@ -31,7 +31,7 @@ func (s *Schedule) Pop() interface{} {
 
 // NewSchedule creates a Schedule object
 // It will error if the required fields are improperly filled in.
-func NewSchedule(layout, value, location string, frequency time.Duration) (*Schedule, error) {
+func NewSchedule(layout, value, location string) (*Schedule, error) {
 	s := &Schedule{}
 	var err error
 
@@ -46,7 +46,9 @@ func NewSchedule(layout, value, location string, frequency time.Duration) (*Sche
 // SetTime parses a string input and sets the time
 // for the event in the Schedule.
 func (s *Schedule) SetTime(layout, value, location string) error {
-
+	// if location == "" {
+	// 	location = "Local"
+	// }
 	loc, err := time.LoadLocation(location)
 	if err != nil {
 		return err
@@ -70,15 +72,13 @@ func parse(layout, value string, location *time.Location) (time.Time, error) {
 }
 
 // CreateSchedule creates a Schedule
-func (s *Schedule) CreateSchedule(t time.Time) error {
-
+func (s *Schedule) CreateSchedule(t time.Time) {
 	s.Schedule = []time.Time{t}
 	heap.Init(s)
-	return nil
 }
 
 // Next returns the next scheduled element
-func (s *Schedule) Next() *time.Time {
+func (s *Schedule) Next() time.Time {
 	t := heap.Pop(s)
-	return t.(*time.Time)
+	return t.(time.Time)
 }

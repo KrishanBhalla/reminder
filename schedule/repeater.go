@@ -26,7 +26,7 @@ var _ Repeater = &DayOfWeekRepeater{}
 // schedule.
 type IntervalRepeater struct {
 	NumTimes int
-	Interval *time.Duration
+	Interval time.Duration
 }
 
 // Repeat takes a Schedule object and alters it
@@ -38,14 +38,14 @@ func (ir *IntervalRepeater) Repeat(s *Schedule) error {
 			ir.NumTimes,
 		)
 	}
-	if ir.Interval == nil {
-		return errors.New("repeater: Interval is set to nil")
+	if ir.Interval == time.Duration(0) {
+		return errors.New("repeater: Interval is set to 0ns")
 	}
 
 	old := s.Schedule
 	n := len(old)
 	new := make([]time.Time, n*(ir.NumTimes+1))
-	interval := *ir.Interval
+	interval := ir.Interval
 	copy(new, old)
 	for i := n; i < n*(ir.NumTimes+1); i++ {
 		new[i] = new[i-n].Add(interval)

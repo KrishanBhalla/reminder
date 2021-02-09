@@ -1,19 +1,31 @@
 package reminder
 
 import (
+	"time"
+
 	"github.com/KrishanBhalla/reminder/notify"
 	"github.com/KrishanBhalla/reminder/schedule"
 )
 
 // Reminder implements a scheduled reminder
 type Reminder struct {
-	Title    string
-	Message  string
 	Schedule *schedule.Schedule
 	Notifier notify.Notifier
 }
 
-// Notify sends the notification
-func (r *Reminder) Notify() error {
-	return r.Notifier.Notify(r.Title, r.Message)
+// Remind will loop through all scheduled items, and
+// notify the user
+func (r *Reminder) Remind(title, message string) error {
+
+	s := *(r.Schedule)
+	for s.Len() > 0 {
+		if d := time.Until(s.Next()); d > time.Duration(0) {
+			time.Sleep(d)
+		}
+		err := r.Notifier.Notify(title, message)
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }

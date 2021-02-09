@@ -14,6 +14,5 @@ type DesktopNotifier struct {
 
 // Notify creates a desktop notification
 func (d *DesktopNotifier) Notify(title, message string) error {
-	// reminder by Daouna Jeong from the Noun Project
 	return beeep.Notify(title, message, "assets/reminder.png")
 }
