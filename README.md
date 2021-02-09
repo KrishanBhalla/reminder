@@ -84,7 +84,7 @@ func main() {
 		Notifier: &notify.DesktopNotifier{},
 	}
 
-	err := rem.Remind("Excercise", "Leave the desk and strech your legs")
+	err := rem.Remind("Exercise", "Leave the desk and strech your legs")
 	fmt.Println(err)
 
 }
