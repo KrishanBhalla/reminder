@@ -122,7 +122,7 @@ func main() {
 		Notifier: &notify.DesktopNotifier{},
 	}
 
-	err := rem.Remind("Exercise", "Leave the desk and strech your legs")
+	err := rem.Remind("Exercise", "Leave the desk and stretch your legs")
 	fmt.Println(err)
 
 }
