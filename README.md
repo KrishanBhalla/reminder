@@ -21,7 +21,7 @@ The notifier defines how one gets notified. By default the `beeep` package is us
 
 The reminder pulls it all together, and allows the user to send a specified message on a given schedule.
 ## Examples
-### 
+### Schedule a single event
 ```go
 package main
 
@@ -130,3 +130,12 @@ func main() {
 
 
 ```
+## Author
+[@KrishanBhalla](https://github.com/KrishanBhalla/)
+## RoadMap
+1.  More thorough unit testing.
+2.  Concurrency and simplification of setting up indepenedent reminders.
+3.  Other notification services
+4.  UI
+## Credits
+[beeep](https://github.com/gen2brain/beeep)
