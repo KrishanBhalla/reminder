@@ -5,12 +5,17 @@ import (
 	"time"
 )
 
-func testingIntervalRepeater(n int, interval time.Duration) (s *Schedule, r Repeater) {
+func getSchedule() *Schedule {
 	layout := time.RFC1123Z
 	value := time.Now().Format(layout)
 
 	schedule, _ := NewSchedule(layout, value, "Local")
+	return schedule
+}
 
+func testingIntervalRepeater(n int, interval time.Duration) (*Schedule, Repeater) {
+
+	schedule := getSchedule()
 	repeater := &IntervalRepeater{
 		NumTimes: n,
 		Interval: interval,
@@ -18,12 +23,9 @@ func testingIntervalRepeater(n int, interval time.Duration) (s *Schedule, r Repe
 	return schedule, repeater
 }
 
-func testingDayOfWeekRepeater(n int, weekdays ...time.Weekday) (s *Schedule, r Repeater) {
-	layout := time.RFC1123Z
-	value := time.Now().Format(layout)
+func testingDayOfWeekRepeater(n int, weekdays ...time.Weekday) (*Schedule, Repeater) {
 
-	schedule, _ := NewSchedule(layout, value, "Local")
-
+	schedule := getSchedule()
 	repeater := &DayOfWeekRepeater{
 		NumTimes: n,
 		Days:     weekdays,
@@ -31,11 +33,7 @@ func testingDayOfWeekRepeater(n int, weekdays ...time.Weekday) (s *Schedule, r R
 	return schedule, repeater
 }
 
-func TestIntervalRepeaterCanRepeat(t *testing.T) {
-	// arrange
-	n := 10
-	interval := time.Duration(5) * time.Minute
-	s, r := testingIntervalRepeater(n, interval)
+func assertExpectedNumberOfRepetitions(s *Schedule, r Repeater, n int, t *testing.T) {
 	// act
 	m := s.Len()
 	r.Repeat(s)
@@ -47,6 +45,14 @@ func TestIntervalRepeaterCanRepeat(t *testing.T) {
 			s.Len(),
 		)
 	}
+}
+
+func TestIntervalRepeaterCanRepeat(t *testing.T) {
+	// arrange
+	n := 10
+	interval := time.Duration(5) * time.Minute
+	s, r := testingIntervalRepeater(n, interval)
+	assertExpectedNumberOfRepetitions(s, r, n, t)
 
 	// Test intervals
 	pres := s.Next()
@@ -94,23 +100,13 @@ func TestDayOfWeekRepeaterCanRepeat(t *testing.T) {
 	n := 10
 	day := time.Monday
 	s, r := testingDayOfWeekRepeater(n, day)
-	// act
-	m := s.Len()
-	r.Repeat(s)
-	// assert
-	if s.Len() != m*(n+1) {
-		t.Errorf(
-			"Repeated schedule did not have expected length. Expected %d, returned %d",
-			m*(n+1),
-			s.Len(),
-		)
-	}
+	assertExpectedNumberOfRepetitions(s, r, n, t)
 
 	// Test intervals
 	i := 0
 	for s.Len() > 0 {
 		pres := s.Next()
-		if i < m {
+		if i < 1 {
 			i++
 			continue
 		}
