@@ -2,10 +2,10 @@
 Reminder is a Golang package to allow users to schedule alerts.
 It has 4 parts:
 
-1. Scheduler
-2. Repeater
-3. Notifier
-4. Reminder
+1.  Scheduler
+2.  Repeater
+3.  Notifier
+4.  Reminder
  
 A scheduler takes in a `time.Time` for the first reminder to be sent.
 
