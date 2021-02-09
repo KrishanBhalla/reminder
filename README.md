@@ -20,7 +20,35 @@ The notifier defines how one gets notified. By default the `beeep` package is us
 
 The reminder pulls it all together, and allows the user to send a specified message on a given schedule.
 ## Examples
-### Simple
+### 
+```go
+package main
+
+import (
+	"fmt"
+	"time"
+
+	"github.com/KrishanBhalla/reminder"
+	"github.com/KrishanBhalla/reminder/notify"
+	"github.com/KrishanBhalla/reminder/schedule"
+)
+
+func main() {
+	// Schedule an event
+    format := time.RFC1123Z
+	t := time.Now().Add(time.Minute)
+    s, _ := schedule.NewSchedule(format, t.Format(format), "Local")
+	// Create a reminder
+    rem := reminder.Reminder{
+        Schedule: s,
+        Notifier: &notify.DesktopNotifier{},
+    }
+
+    err := rem.Remind("Reminder", "I'm a reminder made in Go!")
+    fmt.Println(err)
+}
+```
+### One Repeater
 ```go
 package main
 
@@ -35,15 +63,17 @@ import (
 
 func main() {
 
+	// Schedule an event
     format := time.RFC1123Z
-    s, _ := schedule.NewSchedule(format, time.Now().Format(format), "GMT")
+    s, _ := schedule.NewSchedule(format, time.Now().Format(format), "Local")
 
+	// Repeat it every 5 seconds
     r := schedule.IntervalRepeater{
         Interval: time.Duration(5) * time.Second,
         NumTimes: 3,
     }
     r.Repeat(s)
-
+	// Create the reminder
     rem := reminder.Reminder{
         Schedule: s,
         Notifier: &notify.DesktopNotifier{},
@@ -80,7 +110,7 @@ func main() {
 	}
 	r.Repeat(s)
 
-	// Repeat the reminder every day of the week
+	// Repeat all of those reminders every day for a week
 	wdayRem := schedule.DayOfWeekRepeater{
 		Days:     []time.Weekday{time.Monday, time.Tuesday, time.Wednesday, time.Thursday, time.Friday},
 		NumTimes: 5,
