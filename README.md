@@ -140,3 +140,4 @@ func main() {
 4.  UI
 ## Credits
 [beeep](https://github.com/gen2brain/beeep)
+[go-oushbullet](https://github.com/cschomburg/go-pushbullet)
