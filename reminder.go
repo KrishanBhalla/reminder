@@ -1,6 +1,7 @@
 package reminder
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/KrishanBhalla/reminder/notify"
@@ -19,9 +20,11 @@ func (r *Reminder) Remind(title, message string) error {
 
 	s := *(r.Schedule)
 	for s.Len() > 0 {
+		s := s
 		if d := time.Until(s.Next()); d > time.Duration(0) {
 			time.Sleep(d)
 		}
+		fmt.Println("In loop")
 		err := r.Notifier.Notify(title, message)
 		if err != nil {
 			return err

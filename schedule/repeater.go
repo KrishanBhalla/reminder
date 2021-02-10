@@ -1,7 +1,6 @@
 package schedule
 
 import (
-	"container/heap"
 	"errors"
 	"fmt"
 	"time"
@@ -50,8 +49,7 @@ func (ir *IntervalRepeater) Repeat(s *Schedule) error {
 	for i := n; i < n*(ir.NumTimes+1); i++ {
 		new[i] = new[i-n].Add(interval)
 	}
-	s.Schedule = new
-	heap.Init(s)
+	s.CreateSchedule(new...)
 	return nil
 }
 
@@ -91,8 +89,7 @@ func (r *DayOfWeekRepeater) Repeat(s *Schedule) error {
 		wday := int(t.Weekday())
 		new[i] = t.Add(wdayMap[wday])
 	}
-	s.Schedule = new
-	heap.Init(s)
+	s.CreateSchedule(new...)
 	return nil
 }
 

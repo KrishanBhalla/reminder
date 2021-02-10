@@ -7,7 +7,7 @@ import (
 
 // Schedule is the base struct representing a schedule
 type Schedule struct {
-	Schedule []time.Time `json:"schedule"`
+	Schedule []time.Time
 }
 
 // Assert that Schedule implements the heap interface at compile time
@@ -73,8 +73,8 @@ func parse(layout, value string, location *time.Location) (time.Time, error) {
 }
 
 // CreateSchedule creates a Schedule
-func (s *Schedule) CreateSchedule(t time.Time) {
-	s.Schedule = []time.Time{t}
+func (s *Schedule) CreateSchedule(t ...time.Time) {
+	s.Schedule = t
 	heap.Init(s)
 }
 
