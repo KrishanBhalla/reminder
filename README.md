@@ -42,7 +42,7 @@ func main() {
 	// Create a reminder
     rem := reminder.Reminder{
         Schedule: s,
-        Notifier: &notify.DesktopNotifier{},
+        Notifier: &notify.Desktop{},
     }
 
     err := rem.Remind("Reminder", "I'm a reminder made in Go!")
@@ -77,14 +77,14 @@ func main() {
 	// Create the reminder
     rem := reminder.Reminder{
         Schedule: s,
-        Notifier: &notify.DesktopNotifier{},
+        Notifier: &notify.Desktop{},
     }
 
     err := rem.Remind("Reminder", "I'm a reminder made in Go!")
     fmt.Println(err)
 }
 ```
-### Combining Repeaters
+### Combining Repeaters and sending to Pushbullet
 ```go
 
 package main
@@ -118,9 +118,10 @@ func main() {
 	}
 	wdayRem.Repeat(s)
 
+	notifier := notify.NewPushbullet("apiToken", "Device1", "Device2")
 	rem := reminder.Reminder{
 		Schedule: s,
-		Notifier: &notify.DesktopNotifier{},
+		Notifier: notifier,
 	}
 
 	err := rem.Remind("Exercise", "Leave the desk and stretch your legs")
