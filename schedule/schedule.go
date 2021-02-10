@@ -10,6 +10,9 @@ type Schedule struct {
 	Schedule []time.Time `json:"schedule"`
 }
 
+// Assert that Schedule implements the heap interface at compile time
+var _ heap.Interface = &Schedule{}
+
 // Implementing the heap interface
 func (s Schedule) Len() int           { return len(s.Schedule) }
 func (s Schedule) Less(i, j int) bool { return s.Schedule[i].Sub(s.Schedule[j]) < time.Duration(0) }

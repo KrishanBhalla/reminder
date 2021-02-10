@@ -36,8 +36,15 @@ func testingDayOfWeekRepeater(n int, weekdays ...time.Weekday) (*Schedule, Repea
 func assertExpectedNumberOfRepetitions(s *Schedule, r Repeater, n int, t *testing.T) {
 	// act
 	m := s.Len()
-	r.Repeat(s)
+	err := r.Repeat(s)
 	// assert
+
+	if err != nil {
+		t.Errorf(
+			"Unexpected error on repeat: %s",
+			err,
+		)
+	}
 	if s.Len() != m*(n+1) {
 		t.Errorf(
 			"Repeated schedule did not have expected length. Expected %d, returned %d",
