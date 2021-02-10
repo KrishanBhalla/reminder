@@ -135,7 +135,7 @@ func main() {
 [@KrishanBhalla](https://github.com/KrishanBhalla/)
 ## Road Map
 1.  More thorough unit testing.
-2.  Concurrency and simplification of setting up indepenedent reminders.
+2.  Concurrency and simplification of setting up independent reminders.
 3.  Other notification services
 4.  UI
 ## Credits
