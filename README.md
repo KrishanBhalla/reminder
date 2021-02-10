@@ -49,7 +49,7 @@ func main() {
     fmt.Println(err)
 }
 ```
-### One Repeater
+### One Repeater, Desktop Notifications
 ```go
 package main
 
@@ -84,7 +84,7 @@ func main() {
     fmt.Println(err)
 }
 ```
-### Combining Repeaters and sending to Pushbullet
+### Combining Repeaters And Using Pushbullet
 ```go
 
 package main
