@@ -139,5 +139,5 @@ func main() {
 3.  Other notification services
 4.  UI
 ## Credits
-[beeep](https://github.com/gen2brain/beeep)
-[go-oushbullet](https://github.com/cschomburg/go-pushbullet)
+*  [beeep](https://github.com/gen2brain/beeep)
+*  [go-pushbullet](https://github.com/cschomburg/go-pushbullet)
